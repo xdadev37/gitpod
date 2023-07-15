@@ -3,9 +3,11 @@ services:
     image: ${REGISTRY}/nodejs-workspace
     build:
       context: ./
+      no_cache: true
     restart: always
     runtime: runc
     network_mode: host
+    command: sudo chown openvscode-server:openvscode-server /home/workspace/.docker -R
     volumes:
       - type: bind
         source: ${PROJECTS_PATH}

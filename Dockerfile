@@ -11,13 +11,14 @@ RUN sudo apt-get update -y \
     | sudo -E bash - \
     && curl -fsSL https://get.docker.com -o get-docker.sh \
     && sudo sh get-docker.sh \
-    && sudo chown openvscode-server:openvscode-server /home/workspace/.docker -R \
     && sudo apt-get install -y nodejs powershell \
     && sudo npm i -g npm \
     && sudo npm i -g yarn \
     && git config --global user.email "pouriasa37@gmail.com" \
-    && git config --global user.name "xdadev37"
-WORKDIR /home/openvscode-server
-RUN yarn set version berry \
-    && rm package.json
+    && git config --global user.name "xdadev37" \
+    && sudo usermod -s /usr/bin/pwsh openvscode-server
 COPY proxy.conf /etc/apt/apt.conf.d/
+WORKDIR /home/workspace
+CMD sudo chown openvscode-server:openvscode-server /home/workspace/.docker -R \
+    && yarn set version berry \
+    && rm package.json
