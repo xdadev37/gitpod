@@ -8,8 +8,11 @@ services:
     network_mode: host
     volumes:
       - type: bind
-        source: ${PROJECTS_PATH}
+        source: /home/${USER}/${PROJECTS_PATH}
         target: /home/workspace/Projects
+      - type: bind
+        source: /home/${USER}/.ssh
+        target: /home/${USER}/.ssh
       - type: bind
         read_only: true
         source: "/var/run/docker.sock"

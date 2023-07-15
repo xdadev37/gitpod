@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile
-FROM reg.oncolog.ir/openvscode-server
+FROM ${REGISTRY}/openvscode-server
 WORKDIR /tmp
 RUN apt-get update -y \
     && apt-get full-upgrade -y \
