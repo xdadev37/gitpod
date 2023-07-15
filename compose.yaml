@@ -8,18 +8,18 @@ services:
     network_mode: host
     volumes:
       - type: bind
-        source: /home/${USER}/${PROJECTS_PATH}
-        target: /home/workspace/Projects
+        source: ${PROJECTS_PATH}
+        target: /home/workspace:cached
       - type: bind
-        source: /home/${USER}/.ssh
-        target: /home/${USER}/.ssh
+        source: ${SSH_PATH}
+        target: /home/openvscode-server/.ssh
       - type: bind
         read_only: true
         source: "/var/run/docker.sock"
         target: /var/run/docker.sock
       - type: volume
         source: ovsc_extensions
-        target: /home/workspace/.openvscode-server
+        target: /home/workspace
 
 volumes:
   ovsc_extensions:
