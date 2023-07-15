@@ -1,0 +1,23 @@
+services:
+  gitpod:
+    image: ${REGISTRY}/nodejs-workspace
+    build:
+      context: ./
+    restart: always
+    runtime: runc
+    network_mode: host
+    volumes:
+      - type: bind
+        source: ${PROJECTS_PATH}
+        target: /home/workspace/Projects
+      - type: bind
+        read_only: true
+        source: "/var/run/docker.sock"
+        target: /var/run/docker.sock
+      - type: volume
+        source: ovsc_extensions
+        target: /home/workspace/.openvscode-server
+
+volumes:
+  ovsc_extensions:
+    name: ovsc_extensions
