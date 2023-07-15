@@ -14,9 +14,8 @@ services:
         source: ${SSH_PATH}
         target: /home/openvscode-server/.ssh
       - type: bind
-        read_only: true
         source: "/var/run/docker.sock"
-        target: /var/run/docker.sock
+        target: /home/workspace/.docker/run/docker.sock
       - type: volume
         source: ovsc_extensions
         target: /home/workspace
