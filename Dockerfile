@@ -15,8 +15,9 @@ RUN sudo apt-get update -y \
     && sudo apt-get install -y nodejs powershell \
     && sudo npm i -g npm \
     && sudo npm i -g yarn \
-    && yarn set version berry \
-    && rm package.json \
     && git config --global user.email "pouriasa37@gmail.com" \
     && git config --global user.name "xdadev37"
+WORKDIR /home/openvscode-server
+RUN yarn set version berry \
+    && rm package.json
 COPY proxy.conf /etc/apt/apt.conf.d/
