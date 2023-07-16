@@ -1,5 +1,5 @@
 services:
-  gitpod:
+  openvscode-server:
     image: ${REGISTRY}/nodejs-workspace
     build:
       context: ./
@@ -7,7 +7,9 @@ services:
     restart: always
     runtime: runc
     network_mode: host
-    command: sudo chown openvscode-server:openvscode-server /home/workspace/.docker -R
+    privileged: true
+    devices:
+      - "/dev/dri:/dev/dri"
     volumes:
       - type: bind
         source: ${PROJECTS_PATH}
