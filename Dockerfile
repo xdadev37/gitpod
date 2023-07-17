@@ -12,7 +12,6 @@ RUN sudo apt-get update -y \
     && curl -fsSL https://get.docker.com -o get-docker.sh \
     && sudo sh get-docker.sh \
     && dockerd-rootless-setuptool.sh install \
-    && sudo chown openvscode-server:openvscode-server /home/workspace/.docker -R \
     && sudo apt-get install -y nodejs powershell \
     && sudo npm i -g npm \
     && sudo npm i -g yarn \
@@ -21,5 +20,6 @@ RUN sudo apt-get update -y \
     && sudo usermod -s /usr/bin/pwsh openvscode-server
 COPY proxy.conf /etc/apt/apt.conf.d/
 WORKDIR /home/workspace
-CMD yarn set version berry \
+RUN yarn set version berry \
+    && sudo chown openvscode-server:openvscode-server /home/workspace/.docker -R \
     && rm package.json
