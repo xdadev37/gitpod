@@ -14,7 +14,7 @@ services:
     volumes:
       - type: bind
         source: ${PROJECTS_PATH}
-        target: /home/workspace:cached
+        target: /home/projects
       - type: bind
         source: ${SSH_PATH}
         target: /home/openvscode-server/.ssh
