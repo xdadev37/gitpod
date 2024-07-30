@@ -1,7 +1,6 @@
 services:
   openvscode-server:
     image: ${REGISTRY}/nodejs-workspace
-    runtime: crun
     build:
       context: ./
       no_cache: true
